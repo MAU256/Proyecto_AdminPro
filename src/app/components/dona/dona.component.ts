@@ -30,17 +30,14 @@ export class DonaComponent{
         backgroundColor: ['#9e120e','#ff5800', '#ffb414']       
       },
     ] 
-  } 
-  ngOnInit(): void {
-    console.info(this.doughnutChartLabels)
-    console.info(this.doughnutChartData.labels)
-  }
+  }   
   ngOnChanges(): void {
     this.doughnutChartData.labels = this.doughnutChartLabels;
     // this.doughnutChartData.datasets["data"] = this.data;
    
   }
    
+
   
   
 
