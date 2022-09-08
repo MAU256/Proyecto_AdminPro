@@ -10,6 +10,8 @@ import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettinsComponent } from './account-settins/account-settins.component';
+import { PromesaComponent } from './promesa/promesa.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { AccountSettinsComponent } from './account-settins/account-settins.compo
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    AccountSettinsComponent
+    AccountSettinsComponent,
+    PromesaComponent,
+    RxjsComponent
   ],
   exports: [
     DashboardComponent,
