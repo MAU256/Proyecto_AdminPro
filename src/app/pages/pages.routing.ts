@@ -8,6 +8,7 @@ import { Grafica1Component } from './grafica1/grafica1.component';
 import { AccountSettinsComponent } from './account-settins/account-settins.component';
 import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: PagesComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardComponent, data: {titulo: 'Dashboard'}},
       { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress'}},
