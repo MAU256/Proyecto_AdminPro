@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+
+import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -7,14 +9,15 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styles: [
   ]
 })
-export class HeaderComponent {
-
+export class HeaderComponent{
+  public usuario: Usuario;
   constructor(
-    private usuarioService: UsuarioService,
-   
-  ) { }
+    private usuarioService: UsuarioService,   
+  ) { 
+    this.usuario = usuarioService.usuario;
+  }
 
-  logOut(){
+ logOut(){
     this.usuarioService.logOut();
   }
   

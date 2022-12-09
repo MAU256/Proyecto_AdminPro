@@ -9,6 +9,7 @@ import { AccountSettinsComponent } from './account-settins/account-settins.compo
 import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardComponent, data: {titulo: 'Dashboard'}},
+      {path: 'profile', component: PerfilComponent, data: {titulo: 'Profile'}},
       { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress'}},
       { path: 'grafica1', component: Grafica1Component, data: {titulo: 'Grafica'}},
       {path: 'account-settings', component: AccountSettinsComponent, data: {titulo: 'Account-settings'}},

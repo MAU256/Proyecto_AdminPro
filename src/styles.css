@@ -12,3 +12,14 @@
 #themecolors .selector, .cursor{
     cursor: pointer;
 }
+.circle-img img{
+    width: 30px;    
+    height: 30px;
+    border-radius: 100%;    
+}
+
+.img-avatar{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}

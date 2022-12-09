@@ -41,11 +41,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   }
 
-  googleInit() {
+  googleInit () {
     google.accounts.id.initialize({
       client_id: "403107613483-r5bkk65ms1oc9fdvno4aca917vb4e8gg.apps.googleusercontent.com",
       callback: (response: any) => this.handleCredentialResponse(response)
-    });
+    });    
     google.accounts.id.renderButton(
       this.googleBtn.nativeElement,
       { theme: "outline", size: "large" }  // customization attributes
@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   handleCredentialResponse(response: any) {
     this.usuarioService.loginGoogle(response.credential)
-                        .subscribe(resp => {                          
-                          localStorage.setItem('emailGoogle', resp.email);
+                        .subscribe(resp => {                        
+                          localStorage.setItem('emailGoogle', resp.email);                          
                           this.ngZone.run(() => {
                             this.router.navigateByUrl('/');
                           });                          
