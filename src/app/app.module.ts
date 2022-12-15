@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { AuthModule } from './auth/auth.module';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { AuthModule } from './auth/auth.module';
     PagesModule,
     AuthModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

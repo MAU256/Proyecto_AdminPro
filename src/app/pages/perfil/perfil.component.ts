@@ -67,8 +67,7 @@ export class PerfilComponent implements OnInit {
         Swal.fire('Guardado', 'La imagen se ha subido correctamente', 'success');
       }).catch(err => {
         Swal.fire('Error', 'Error al subir la imagen', 'error');
-      });
-        
+      });        
   }
 
 }

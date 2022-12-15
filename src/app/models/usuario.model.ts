@@ -20,8 +20,7 @@ export class Usuario {
         this.email = usuario.email
     }
 
-    get imagenUrl(): string{ 
-       
+    get imagenUrl(): string{        
         if(this.img){
             if(this.img.includes('https')){
                 return this.img;

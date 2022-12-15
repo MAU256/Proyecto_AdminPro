@@ -13,6 +13,7 @@ import { AccountSettinsComponent } from './account-settins/account-settins.compo
 import { PromesaComponent } from './promesa/promesa.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AccountSettinsComponent,
     PromesaComponent,
     RxjsComponent,
-    PerfilComponent
+    PerfilComponent,
+    UsuariosComponent
   ],
   exports: [
     DashboardComponent,

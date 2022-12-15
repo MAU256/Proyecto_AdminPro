@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   }
 
-  googleInit () {
-    google.accounts.id.initialize({
+ async googleInit () {
+    await google.accounts.id.initialize({
       client_id: "403107613483-r5bkk65ms1oc9fdvno4aca917vb4e8gg.apps.googleusercontent.com",
       callback: (response: any) => this.handleCredentialResponse(response)
     });    
-    google.accounts.id.renderButton(
+    await google.accounts.id.renderButton(
       this.googleBtn.nativeElement,
       { theme: "outline", size: "large" }  // customization attributes
     );
