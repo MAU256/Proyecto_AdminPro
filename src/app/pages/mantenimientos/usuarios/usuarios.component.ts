@@ -21,6 +21,7 @@ export class UsuariosComponent implements OnInit, OnDestroy{
   public desde: number = 0;
   public cargando: boolean = true;
   public imgSubs: Subscription = new Subscription();
+  public valor: number = 0;
   constructor(
     private usuarioService: UsuarioService,
     private busquedasService: BusquedasService,
@@ -53,8 +54,8 @@ export class UsuariosComponent implements OnInit, OnDestroy{
   }
 
   cambiarPagina(valor: number) {
+    this.valor = valor
     this.desde += valor
-
     if (this.desde < 0) {
       this.desde = 0
     } else if (this.desde >= this.totalUsuarios) {
@@ -69,8 +70,11 @@ export class UsuariosComponent implements OnInit, OnDestroy{
       return this.usuarios = this.usuariosTemp;
     }
     return this.busquedasService.buscar('usuarios', termino)
-      .subscribe(resultados => {
+      .subscribe((resultados: any) => {
+        this.cargando = false;
         this.usuarios = resultados;
+      },error =>{
+        this.cargando = true;
       });
   }
 

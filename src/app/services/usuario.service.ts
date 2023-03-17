@@ -53,22 +53,25 @@ export class UsuarioService {
   
   validarToken(): Observable<boolean> {
     
-    google.accounts.id.initialize({
-      client_id: "403107613483-r5bkk65ms1oc9fdvno4aca917vb4e8gg.apps.googleusercontent.com",
-    });
-    pipe(delay(500))
+   
+    // pipe(delay(500))
     return this.http.get(`${this.base_url}/login/renew`, {
       headers: {
         'x-token': this.token
-      }
+      }      
     }).pipe(      
       tap((res: any) => {
         this.usuario = new Usuario(res.usuario);
         localStorage.setItem('token', res.token);
+        google.accounts.id.initialize({
+          client_id: "403107613483-r5bkk65ms1oc9fdvno4aca917vb4e8gg.apps.googleusercontent.com",
+        })
+        
       }),
       map(res => true),
       catchError(error => of(false))
-    );
+    )
+    
   }
 
 
@@ -109,8 +112,7 @@ export class UsuarioService {
 
   }
 
-  cargarUsuarios(desde: number = 0) {
-    //localhost:3000/api/usuarios?desde=0
+  cargarUsuarios(desde: number = 0) {   
     const url = `${this.base_url}/usuarios?desde=${desde}`;
     return this.http.get<cargarUsuario>(url, this.headers)
       .pipe(
@@ -122,7 +124,6 @@ export class UsuarioService {
           };
         })
       )
-
   }
 
   eliminarUsuario(usuario: Usuario){
