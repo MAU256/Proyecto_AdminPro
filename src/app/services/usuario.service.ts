@@ -31,6 +31,11 @@ export class UsuarioService {
   get uidUsuario(): string {
     return this.usuario.uid!;
   }
+  get roleUsuario(): 'ADMIN_ROLE' | 'USER_ROLE'{
+
+    return this.usuario.role;
+
+  }
 
   get headers() {
     return {
@@ -40,8 +45,15 @@ export class UsuarioService {
     };
   }
 
+  guardarStorage(token: string, menu: any){
+    localStorage.setItem('menu', JSON.stringify(menu));
+    localStorage.setItem('token', token)
+    
+  }
+
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     const usuario = localStorage.getItem('emailGoogle');
     google.accounts.id.revoke(usuario, () => {
       this.ngZone.run(() => {
@@ -51,10 +63,7 @@ export class UsuarioService {
     });
   }
   
-  validarToken(): Observable<boolean> {
-    
-   
-    // pipe(delay(500))
+  validarToken(): Observable<boolean> { 
     return this.http.get(`${this.base_url}/login/renew`, {
       headers: {
         'x-token': this.token
@@ -62,11 +71,11 @@ export class UsuarioService {
     }).pipe(      
       tap((res: any) => {
         this.usuario = new Usuario(res.usuario);
-        localStorage.setItem('token', res.token);
+        this.guardarStorage(res.token, res.menu);
         google.accounts.id.initialize({
           client_id: "403107613483-r5bkk65ms1oc9fdvno4aca917vb4e8gg.apps.googleusercontent.com",
         })
-        
+        return true;        
       }),
       map(res => true),
       catchError(error => of(false))
@@ -79,7 +88,7 @@ export class UsuarioService {
     return this.http.post(`${this.base_url}/usuarios`, formData)
       .pipe(
         tap((res: any) => {
-          localStorage.setItem('token', res.token)
+          this.guardarStorage(res.token, res.menu)          
         })
       )
 
@@ -97,7 +106,7 @@ export class UsuarioService {
     return this.http.post(`${this.base_url}/login`, formData)
       .pipe(
         tap((res: any) => {
-          localStorage.setItem('token', res.token);
+          this.guardarStorage(res.token, res.menu);
         })
       )
   }
@@ -106,7 +115,7 @@ export class UsuarioService {
     return this.http.post(`${this.base_url}/login/google`, { token })
       .pipe(
         tap((res: any) => {
-          localStorage.setItem('token', res.token)
+          this.guardarStorage(res.token, res.menu);
         })
       );
 

@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -12,13 +13,21 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class HeaderComponent{
   public usuario: Usuario;
   constructor(
-    private usuarioService: UsuarioService,   
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { 
     this.usuario = usuarioService.usuario;
   }
 
  logOut(){
     this.usuarioService.logOut();
+  }
+
+  buscar(termino: string){
+    if(termino.length === 0){
+      return;
+    }
+    this.router.navigateByUrl(`/dashboard/buscar/${termino}`);
   }
   
 

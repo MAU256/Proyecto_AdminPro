@@ -1,8 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
+import { pipe } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 
 declare const google: any;
@@ -12,7 +14,7 @@ declare const google: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit, AfterContentInit{
   @ViewChild('googleBtn')
   public googleBtn:ElementRef = {} as ElementRef;
 
@@ -28,28 +30,38 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private ngZone: NgZone
-  ) { }
+  ) {   
+  }
 
   ngOnInit(): void {
+   
     if (localStorage.getItem('email') !== null) {
       this.loginForm.get('remember').setValue(true)
     }
+    
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(){
     this.googleInit();
-
-  }
+   
+  } 
 
  async googleInit () {
+  try {        
+    
     await google.accounts.id.initialize({
       client_id: "403107613483-r5bkk65ms1oc9fdvno4aca917vb4e8gg.apps.googleusercontent.com",
-      callback: (response: any) => this.handleCredentialResponse(response)
-    });    
-    await google.accounts.id.renderButton(
+      callback: (response: any) =>(this.handleCredentialResponse(response))
+    });     
+   
+    await google.accounts.id.renderButton(       
       this.googleBtn.nativeElement,
       { theme: "outline", size: "large" }  // customization attributes
     );
+    
+  } catch (error) {    
+  }
+    
   }
 
   handleCredentialResponse(response: any) {
