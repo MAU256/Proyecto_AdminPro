@@ -1,0 +1,100 @@
+<!-- HTML del modal -->
+<div class="fondo-modal-imagen animated fadeIn fast" [class.oculto]="this.modalMedicoService.ocultarModal">
+    <!-- this.modalMedicoService.ocultarModal -->
+    <div id="responsive-modal" class="modal animated slideInUp slow transition mt-2 d-flex align-items-center justify-content-center"
+        tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog animated slideInUp slow transition" style="max-width: 800px;"> <!-- Ajustar el ancho máximo -->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h4 class="modal-title">Informacion del paciente</h4>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        (click)="cerrarModal()">×</button> -->
+                </div>
+                <div class="modal-body">
+                    <!-- Información detallada del paciente -->
+                    <div>
+                        <h3>{{ this.modalMedicoService.medicoSeleccionado?.nombre }} {{
+                            this.modalMedicoService.medicoSeleccionado?.apellido }}</h3>
+                        <!-- <p>Fecha de nacimiento: {{ this.modalMedicoService.medicoSeleccionado?.fechaNacimiento |
+                            date }}</p>
+                        <p>Género: {{ this.modalMedicoService.medicoSeleccionado?.genero }}</p>
+                        <p>Dirección: {{ this.modalMedicoService.medicoSeleccionado?.direccion }}</p>
+                        <p>Teléfono: {{ this.modalMedicoService.medicoSeleccionado?.telefono }}</p>
+                        <p>Email: {{ this.modalMedicoService.medicoSeleccionado?.email }}</p>
+                        <p>Estado: {{ this.modalMedicoService.medicoSeleccionado?.status }}</p> -->
+
+                    </div>
+                    <!-- Botones para crear cita y ver citas -->
+                    <div class="text-center">                        
+                        <button class="btn btn-secondary" (click)="verCitas(this.modalMedicoService.id)">Ver
+                            Citas</button>
+                    </div>
+                    <div class="ver-cita overflow-auto animated slideInUp slow transition" *ngIf="!cargando">
+                        <div class="row animates fadeIn fast">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h4 class="card-title">Citas</h4>
+                                                <h6 class="card-subtitle">Citas registradas: {{totalCitas}}</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-responsive overflow-auto"
+                                            style="max-height: 300px; max-width: 500px;">
+                                            <table class="table  overflow-auto" style="font-size: smaller; color:black">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Titulo</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Estado</th>
+                                                        <th>Fecha de la cita</th>
+                                                        <th>Medico</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let cita of citas">
+                                                        <td class="col-1">
+                                                            <a>
+                                                                <label type="text"
+                                                                    class="cursor">{{cita.titulo}}</label>
+                                                            </a>
+
+                                                        </td>
+                                                        <td class="col-1">
+                                                            <label type="text">{{cita.motivo}}</label>
+                                                        </td>
+                                                        <td class="col-1">
+
+                                                            <label type="text">{{cita.estado}}</label>
+                                                        </td>
+                                                        <td class="col-1">
+
+                                                            <label type="text">{{
+                                                                obtenerFechaFormateada(cita!.fechaCita) }}</label>
+                                                        </td>
+                                                        <td class="col-1">
+                                                            <label type="text">{{cita.medico!.nombre}}</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <button type="button" class="btn btn-default mt-2"
+                                            (click)="ocultarCitas()">Ocultar</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="cerrarModal()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>

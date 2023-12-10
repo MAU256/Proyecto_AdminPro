@@ -19,6 +19,7 @@ export class ModalImagenComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log("imagen")
   }
 
   cerrarModal(){
@@ -42,8 +43,7 @@ export class ModalImagenComponent implements OnInit {
 
   subirImagen() {
     const id = this.modalImagenService.id;
-    const tipo = this.modalImagenService.tipo;
-
+    const tipo = this.modalImagenService.tipo;    
     this.fileUploadService
       .actualizarFoto(this.imagenSubir, tipo, id)
       .then(img => {        

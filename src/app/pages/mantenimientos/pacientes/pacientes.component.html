@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input type="text" class="form-control" placeholder="Buscar Medico..."
+                <input type="text" class="form-control" placeholder="Buscar Paciente..."
                     (keyup)="buscar(txtTermino.value)" #txtTermino>
             </div>
         </div>
@@ -26,14 +26,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-8">
-                        <h4 class="card-title">Medicos</h4>
-                        <h6 class="card-subtitle">Medicos registrados: {{totalMedicos}}</h6>
+                        <h4 class="card-title">Pacientes</h4>
+                        <h6 class="card-subtitle">Pacientes registrados: {{totalPacientes}}</h6>
                     </div>
                     <div class="col text-right">
-                        <a class="btn btn-primary" routerLink="/dashboard/medico/nuevo">
+                        <a class="btn btn-primary" routerLink="/dashboard/paciente/nuevo">
 
                             <i class="fa fa-hospital-o"></i>
-                            Crear medico
+                            Crear Paciente
                         </a>
                     </div>
                 </div>
@@ -49,30 +49,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let medico of medicos">
+                            <tr *ngFor="let paciente of pacientes">
                                 <td class="text-center">
-                                    <img [src]="medico.img | imagen:'medicos'" class="circle-avatar cursor w100"
-                                        (click)="abrirModal(medico)">
+                                    <img [src]="paciente.img | imagen:'pacientes'" class="circle-avatar cursor w100"
+                                        (click)="abrirModal(paciente)">
                                 </td>
-                                <td>
-                                    <!-- <input type="text" class="form-control" placeholder="Nombre del Medico"
-                                        [(ngModel)]="medico.nombre"> -->
-                                    <a>
-                                        <label type="text" class="cursor"
-                                            (click)="abrirModalInfo(medico)">{{medico.nombre}}</label>
+                                <td>                                    
+                                    <a >
+                                        <label type="text" class="cursor" (click)="abrirModalInfo(paciente)">{{paciente.nombre}}</label>
                                     </a>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="Telefono del Medico"
-                                        [(ngModel)]="medico.telefono">
+                                    <input type="text" class="form-control" placeholder="Telefono del Paciente"
+                                        [(ngModel)]="paciente.telefono">
                                 </td>
                                 <td class="text-nowrap">
-                                    <a [routerLink]="['/dashboard/medico', medico._id]" data-toggle="tooltip"
+                                    <a [routerLink]="['/dashboard/paciente', paciente._id]" data-toggle="tooltip"
                                         data-original-title="Editar">
                                         <i class="fa fa-pencil text-inverse m-r-10"></i>
                                     </a>
-                                    <a class="cursor" (click)="borrarMedico(medico)" data-toggle="tooltip"
-                                        data-original-title="Borrar">
+                                    <a class="cursor" data-toggle="tooltip" data-original-title="Borrar"
+                                        (click)="borrarPaciente(paciente)">
                                         <i class="fa fa-close text-danger"></i>
                                     </a>
                                 </td>
@@ -84,7 +81,7 @@
                 <button class="btn btn-secondary" (click)="cambiarPagina(-5)" *ngIf="desde >= 5">Anterior</button>
                 &nbsp;
                 <button class="btn btn-secondary" (click)="cambiarPagina(5)"
-                    *ngIf="desde < totalMedicos-5">Siguiente</button>
+                    *ngIf="desde < totalPacientes-5">Siguiente</button>
 
             </div>
         </div>

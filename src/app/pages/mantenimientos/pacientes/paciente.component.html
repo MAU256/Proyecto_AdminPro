@@ -1,0 +1,124 @@
+<div class="row justify-content-around">
+    <div class="col-md-6  animated slideInLeft slow transition">
+        <div class="card ">
+            <div class="card-body">
+                <h4 class="card-title">Paciente</h4>
+                <h6 class="card-subtitle">Guardar informacion</h6>
+                <form class="form-horizontal p-t-20" [formGroup]="pacienteForm" (submit)="actualizarPaciente()">
+                    <div class="form-group row" *ngIf="pacienteSeleccionado">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <img [src]="pacienteSeleccionado.img | imagen: 'pacientes'" class="w200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="nombre" class="form-control" id="exampleInputuname3"
+                                    placeholder="Nombre del paciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="apellido-paciente" class="col-sm-3 control-label">Apellido</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="apellido" class="form-control"
+                                    id="apellido-paciente" placeholder="Apellido del paciente">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nacimiento-paciente" class="col-sm-3 control-label">Fecha de nacimiento</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="date" 
+                                        formControlName="fechaNacimiento"
+                                        class="form-control" 
+                                        id="nacimiento-paciente" 
+                                        placeholder="Fecha de nacimiento del paciente">                                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="genero-paciente" class="col-sm-3 control-label">Genero</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <select formControlName="genero" class="form-control" id="genero-paciente">
+                                    <option value="" selected disabled>Selecciona género</option>
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                    <option value="Otro">Otro</option>
+                                </select>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="direccion-paciente" class="col-sm-3 control-label">Direccion</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="direccion" class="form-control"
+                                    id="direccion-paciente" placeholder="Direcion del paciente">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="email" class="form-control" id="exampleInputuname3"
+                                    placeholder="Telefono del paciente" formControlName="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="status-paciente" class="col-sm-3 control-label">Estatus</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <select formControlName="status" class="form-control" id="status-paciente">
+                                    <option value="" selected disabled>Selecciona el estatus</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                    <option value="Baja">Baja</option>
+                                </select>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Telefono</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" class="form-control" id="exampleInputuname3"
+                                    placeholder="Telefono del paciente" formControlName="telefono">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" [disabled]="pacienteForm.invalid"
+                                class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,10 +7,6 @@ interface _HospitalUser{
 }
 
 
-
-
-
-
 export class Hospital {
     constructor(
         public nombre: string,

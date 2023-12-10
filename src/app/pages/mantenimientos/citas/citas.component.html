@@ -1,0 +1,101 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <!-- <div class="card-body">
+                <input type="text" class="form-control" placeholder="Buscar Paciente..."
+                    (keyup)="buscar(txtTermino.value)" #txtTermino>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="text-center">
+            <h4 class="alert-heading">
+                cargando
+            </h4>
+            <i class="fa fa-spin fa-refresh "></i>
+        </div>
+    </div>
+</div>
+
+<div class="row animates fadeIn fast" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Citas</h4>
+                        <h6 class="card-subtitle">Citas registrados: {{totalCitas}}</h6>
+                    </div>
+                    <div class="col text-right">
+                        <a class="btn btn-primary" routerLink="/dashboard/cita/nuevo">
+
+                            <i class="fa fa-hospital-o"></i>
+                            Crear Cita
+                        </a>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>Descripcion</th>
+                                <th>Estado</th>
+                                <th>Fecha de la cita</th>
+                                <th class="w100 text-nowrap text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cita of citas">
+                                <td class="col-1">
+                                    <a >
+                                        <label type="text" class="cursor">{{cita.titulo}}</label>
+                                    </a>
+                                    
+                                    <!-- <input type="text" class="form-control" placeholder="Titulo de la cita"
+                                        [(ngModel)]="cita.titulo">                                     -->
+                                </td>
+                                <td class="col-2">
+                                    <input type="text" class="form-control" placeholder="Descripcion de la cita"
+                                        [(ngModel)]="cita.motivo">
+                                </td>
+                                <td class="col-1">
+                                    <input type="text" class="form-control" placeholder="Estado de la cita"
+                                        [(ngModel)]="cita.estado">
+                                </td>
+                                <td class="col-1">
+                                    <input type="text" class="form-control" placeholder="Fecha de la cita"
+                                        [ngModel]="obtenerFechaFormateada(cita.fechaCita)" (ngModelChange)="cita.fechaCita = $event">
+                                </td>
+                                <td class="col-1">
+                                    <input type="text" class="form-control" placeholder="Hora de la cita"
+                                        [ngModel]="obtenerHoraFormateada(cita.fechaCita)" (ngModelChange)="cita.fechaCita = $event">
+                                </td>
+                                <td class="text-nowrap">
+                                    <a [routerLink]="['/dashboard/cita', cita._id]" data-toggle="tooltip"
+                                         data-original-title="Editar">
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a>
+                                    <!-- <a class="cursor" data-toggle="tooltip" data-original-title="Borrar" (click)="borrarPaciente(paciente)">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a> -->
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- <button class="btn btn-secondary" (click)="cambiarPagina(-5)" *ngIf="desde >= 5">Anterior</button>
+                &nbsp;
+                <button class="btn btn-secondary" (click)="cambiarPagina(5)"
+                    *ngIf="desde < totalPacientes-5">Siguiente</button> -->
+
+            </div>
+        </div>
+    </div>
+</div>

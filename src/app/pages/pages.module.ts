@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { DatepickerModule } from 'ng2-datepicker';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -16,6 +17,10 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
+import { PacienteComponent } from './mantenimientos/pacientes/paciente.component';
+import { CitasComponent } from './mantenimientos/citas/citas.component';
+// import { CitaComponent } from './mantenimientos/citas/cita.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
@@ -34,15 +39,20 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     UsuariosComponent,
     HospitalesComponent,
     MedicosComponent,
+    PacientesComponent,
+    PacienteComponent,
     MedicoComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    CitasComponent  
   ],
+
+
   exports: [
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    AccountSettinsComponent
+    AccountSettinsComponent,    
   ],
   imports: [
     CommonModule,
@@ -51,8 +61,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     FormsModule,
     ComponentsModule,
     ReactiveFormsModule,
-    PipesModule
-    
+    PipesModule,
+    DatepickerModule
+
   ]
 })
-export class PagesModule {}
+export class PagesModule { }

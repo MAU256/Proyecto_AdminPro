@@ -35,11 +35,14 @@ export class MedicoComponent implements OnInit {
     this.activatedRoute.params.subscribe(({ id }) => {
       this.cargarMedico(id);
     })
-
     // this.medicoService.cargarMedico()
     this.medicoForm = this.fb.group({
       nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      especialidad: ['', Validators.required],
+      cedula: ['', Validators.required],      
       telefono: ['', Validators.required],
+      email: ['', Validators.required],
       hospital: ['', Validators.required]
     })
 
@@ -66,9 +69,9 @@ export class MedicoComponent implements OnInit {
           this.router.navigateByUrl(`/dashboard/medicos`);
           return;
         }
-        const {nombre, telefono, hospital} = medico;
+        const {nombre, apellido, especialidad, cedula, telefono, email, hospital} = medico;
         this.medicoSeleccionado = medico;
-        this.medicoForm.setValue({nombre, telefono, hospital: hospital?._id});
+        this.medicoForm.setValue({nombre, apellido, especialidad, cedula, telefono, email, hospital: hospital?._id});
       })
   }
 

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Hospital } from '../models/hospital.model';
 import { Medico } from '../models/medico.model';
 import { Usuario } from '../models/usuario.model';
+import { Paciente } from '../models/paciente.model';
 
 
 
@@ -45,8 +46,12 @@ export class BusquedasService {
     return resultados;
   }
 
+  private transformarPacientes(resultados: Paciente[]): Paciente[] {
+    return resultados;
+  }
+
   buscar(
-    tipo: 'usuarios' | 'hospitales' | 'medicos',
+    tipo: 'usuarios' | 'hospitales' | 'medicos' | 'pacientes',
     termino: string
   ) {
     const url = `${this.base_url}/todo/coleccion/${tipo}/${termino}`;
@@ -56,7 +61,8 @@ export class BusquedasService {
           const resultados = {
             'usuarios': this.transformarUsuarios(resp.coleccion),
             'hospitales': this.transformarHospitales(resp.coleccion),
-            'medicos': this.transformarMedicos(resp.coleccion)
+            'medicos': this.transformarMedicos(resp.coleccion),
+            'pacientes': this.transformarPacientes(resp.coleccion)
           }
           return resultados[tipo];
         })

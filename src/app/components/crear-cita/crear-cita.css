@@ -1,0 +1,11 @@
+.texto-crearcita{
+    font-size: smaller;
+    /* color: red !important; */
+}
+
+.swal2-popup,
+.my-container-class,
+.my-popup-class{
+    z-index: 9999 !important;
+   
+  }

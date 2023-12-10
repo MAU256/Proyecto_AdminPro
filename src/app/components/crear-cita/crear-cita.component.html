@@ -1,0 +1,132 @@
+<div class="row justify-content-around overflow-auto" style="min-width: 700px;">
+    <div class="animated slideInUp slow transition">
+        <div class="card overflow-auto">
+            <div class="card-body overflow-auto">
+
+                <div class="card-body">
+                    <input type="text" class="form-control" placeholder="Seleccione un medico"
+                        [(ngModel)]="medicoSeleccionado" [value]="medicoSeleccionado? medicoSeleccionado: ''"
+                        (input)="buscar(txtTermino.value)" #txtTermino>
+
+                    <ul class="list-group mt-2" *ngIf="medicos && medicos.length > 0">
+                        <li class="list-group-item" *ngFor="let medico of medicos">
+                            <a class="cursor" (click)="seleccionarMedico(this.medico)">{{ medico.nombre}}
+                                {{this.medico.apellido}}</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <h4 class="card-title">Cita</h4>
+                <h6 class="card-subtitle">Guardar informacion</h6>
+                <form class="form-horizontal p-t-20 overflow-auto" style="min-width: 700px;" [formGroup]="citaForm"
+                    (submit)="actualizarCita()" *ngIf="this.medicoActual">
+                    
+
+                    <div class="form-group row texto-nombremedico">
+                        <label for="titulo-nombre-medico" class="control-label col-sm-2">Medico</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <label>{{ this.medicoActual?.nombre}}
+                                    {{this.medicoActual?.apellido}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group row texto-crearcita">
+                        <label for="titulo-cita" class="control-label col-sm-2">Titulo</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="titulo" class="form-control" id="titulo-cita"
+                                    placeholder="Titulo de la cita">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group row">
+                        <label for="apellido-paciente" class="control-label col-sm-2">Fecha de emicion</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="apellido" class="form-control"
+                                    id="apellido-paciente" placeholder="Apellido del paciente">
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group row">
+                        <label for="nacimiento-paciente" class="control-label col-sm-2">Fecha de cita</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="date" formControlName="fechaCita" class="form-control"
+                                    id="nacimiento-paciente" placeholder="Fecha de nacimiento del paciente">
+                            </div>
+                        </div>                        
+                    </div>
+
+
+                    <div class="form-group row texto-crearcita">
+                        <label for="hora-cita" class="control-label col-sm-2">Hora de cita</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-alarm-clock"></i></div>
+                                <input type="time" formControlName="horaCita" class="form-control" id="hora-cita"
+                                    placeholder="Hora de la cita">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="motivo-consulta" class="control-label col-sm-2">Motivo</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="motivo" class="form-control" id="motivo-cita"
+                                    placeholder="Motivo de la consulta">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="tipo-consulta-cita" class="control-label col-sm-2">Tipo de consulta</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="tipoConsulta" class="form-control"
+                                    id="tipo-consulta-cita" placeholder="Tipo de consulta">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="status-paciente" class="control-label col-sm-2">Estatus</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <select formControlName="estado" class="form-control" id="status-paciente">
+                                    <option value="" selected disabled>Selecciona el estatus</option>
+                                    <option value="Activa">Activa</option>
+                                    <option value="Inactiva">Inactiva</option>
+                                    <option value="Suspendida">Suspendida</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" [disabled]="citaForm.invalid"
+                                class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
